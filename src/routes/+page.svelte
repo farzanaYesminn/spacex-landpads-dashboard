@@ -101,7 +101,7 @@
     {#if view === 'table'}
         <Table {filter} />
     {:else}
-        <Grid {filteredPads} />
+        <Grid {filter} />
     {/if}
 
     <h2>Landing Pad Map</h2>
