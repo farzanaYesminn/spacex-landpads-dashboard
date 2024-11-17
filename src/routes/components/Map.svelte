@@ -17,7 +17,6 @@
 	onMount(async () => {
 		try {
 			landingPads = await getLandingPads();
-
 			initializeMap();
 		} catch (error) {
 			console.error('Error fetching landing pads:', error);
@@ -29,13 +28,16 @@
 			target: 'map',
 			layers: [
 				new TileLayer({
-					source: new OSM()
-				})
+					source: new OSM({
+						attributions: [], // Remove attribution text
+					}),
+				}),
 			],
+			controls: [], // Disable all map controls
 			view: new View({
 				center: fromLonLat([-80, 28]),
-				zoom: 3
-			})
+				zoom: 2,
+			}),
 		});
 
 		const createStyle = (status) => {
@@ -60,24 +62,23 @@
 						'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30"><circle cx="15" cy="15" r="10" fill="' +
 						iconColor +
 						'"/></svg>',
-					scale: 0.5
-				})
+					scale: 0.5,
+				}),
 			});
 		};
 
 		const features = landingPads.map((pad) => {
 			const marker = new Feature({
-				geometry: new Point(fromLonLat([pad.location.longitude, pad.location.latitude]))
+				geometry: new Point(fromLonLat([pad.location.longitude, pad.location.latitude])),
 			});
 			marker.setStyle(createStyle(pad.status));
-
 			return marker;
 		});
 
 		const vectorLayer = new VectorLayer({
 			source: new VectorSource({
-				features: features
-			})
+				features: features,
+			}),
 		});
 		map.addLayer(vectorLayer);
 	};
@@ -87,7 +88,7 @@
 
 <style>
 	#map {
-		height: 200px;
-		width: 50%;
+		height: 350px;
+		width: 550px;
 	}
 </style>
