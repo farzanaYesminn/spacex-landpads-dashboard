@@ -7,7 +7,7 @@
 	import { getLandingPads } from './services/spacexApi';
 
 	let statusOptions = ['Active', 'Retired', 'Under Construction'];
-	let isDropdownOpen = false; 
+	let isDropdownOpen = false;
 	let landingPads = [];
 	let view = 'table';
 	let filter = '';
@@ -22,7 +22,7 @@
 		try {
 			landingPads = await getLandingPads();
 			generateStatusOptions();
-			updateFilteredPads(); 
+			updateFilteredPads();
 			calculateSuccessRates();
 		} catch (error) {
 			console.error('Error fetching landing pads:', error);
