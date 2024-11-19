@@ -22,7 +22,7 @@
 	}
 </script>
 
-<div class="grid-container">
+<div class="grid-container inter">
 	{#if filteredPads.length === 0}
 		<p>Loading or no data available...</p>
 	{:else}
@@ -39,11 +39,15 @@
 </div>
 
 <style>
+	
 	.grid-container {
 		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+		grid-template-columns: repeat(3, 1fr); 
 		gap: 1rem;
+		padding: 1rem;
 	}
+
+	
 	.card {
 		border: 1px solid #ddd;
 		border-radius: 8px;
@@ -77,5 +81,17 @@
 	}
 	.status.inactive {
 		color: red;
+	}
+
+	@media (max-width: 768px) {
+		.grid-container {
+			grid-template-columns: repeat(2, 1fr);
+		}
+	}
+
+	@media (max-width: 480px) {
+		.grid-container {
+			grid-template-columns: 1fr; 
+		}
 	}
 </style>

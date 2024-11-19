@@ -29,11 +29,11 @@
 			layers: [
 				new TileLayer({
 					source: new OSM({
-						attributions: [], // Remove attribution text
+						attributions: [], 
 					}),
 				}),
 			],
-			controls: [], // Disable all map controls
+			controls: [], 
 			view: new View({
 				center: fromLonLat([-80, 28]),
 				zoom: 2,
